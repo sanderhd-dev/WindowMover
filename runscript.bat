@@ -7,5 +7,5 @@ if %errorLevel% NEQ 0 (
     exit /b
 )
 
-:: Voer je Python-script uit vanuit dezelfde map als dit .bat-bestand
+:: Gets python script from folder.
 python "%~dp0window.py"
