@@ -2,7 +2,7 @@ import pygetwindow as gw
 import psutil
 
 def list_open_windows():
-    # Verkrijg een lijst van alle geopende vensters
+    # Gets list with opened windows.
     windows = gw.getAllTitles()
     window_dict = {i + 1: title for i, title in enumerate(windows)}
     
@@ -10,35 +10,35 @@ def list_open_windows():
 
 def move_window(window_title):
     try:
-        # Zoek het venster met de gegeven titel
+        # Searches the Window with the Title
         window = gw.getWindowsWithTitle(window_title)[0]
-        # Verplaats het venster naar (0, 0)
+        # Moves the window to 0, 0
         window.topleft = (0, 0)
-        print(f"{window_title} is verplaatst naar (0, 0).")
+        print(f"{window_title} is moved to (0, 0).")
     except Exception as e:
-        print(f"Fout bij het verplaatsen van het venster: {e}")
+        print(f"Error by moving window: {e}")
 
 def main():
-    print("Geopende vensters:")
+    print("Opened windows:")
     
-    # Verkrijg de geopende vensters en hun titels
+    # Gets titles of opened windows
     open_windows = list_open_windows()
 
-    # Toon de vensters in een menu
+    # Puts the windows in a list
     for index, title in open_windows.items():
         print(f"{index}: {title}")
 
-    # Vraag de gebruiker om een keuze
+    # Asks the user for a choise.
     try:
-        choice = int(input("Voer het nummer in van het venster dat je wilt verplaatsen: "))
+        choice = int(input("Number of window you want to move: "))
         if choice in open_windows:
             move_window(open_windows[choice])
         else:
-            print("Ongeldig nummer. Probeer het opnieuw.")
+            print("Invalid number, try a valid one.")
     except ValueError:
-        print("Voer een geldig getal in.")
+        print("Put a valid number.")
     except Exception as e:
-        print(f"Er is een fout opgetreden: {e}")
+        print(f"There is an error: {e}")
 
 if __name__ == "__main__":
     main()
